@@ -1,0 +1,57 @@
+# =========================
+# Node / React
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Production build
+build/
+dist/
+
+# =========================
+# Environment files
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Docker
+# =========================
+.dockerignore
+
+# =========================
+# AWS / Credentials
+# =========================
+.aws/
+aws-credentials
+*.pem
+*.key
+
+# =========================
+# Kubernetes
+# =========================
+*.kubeconfig
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
