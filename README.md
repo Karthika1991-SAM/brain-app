@@ -24,9 +24,12 @@ Application is exposed externally using a Kubernetes LoadBalancer
 CloudWatch is used to monitor build logs and application logs
 
 2. 🏗️ Deployment Architecture
+
+
 +----------+       +-----------+       +--------+       +---------+       +--------------+
 |  GitHub  | --->  | CodeBuild | --->  |  ECR   | --->  |  EKS    | --->  | LoadBalancer |
 +----------+       +-----------+       +--------+       +---------+       +--------------+
+
 
 🔄 Pipeline Flow
     -Developer pushes code to GitHub
