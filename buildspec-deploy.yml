@@ -8,7 +8,7 @@ phases:
       - mv kubectl /usr/local/bin/
   pre_build:
     commands:
-      - aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-cluster
+      - aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-cluster-data
   build:
     commands:
       - kubectl apply -f k8s/deployment.yaml

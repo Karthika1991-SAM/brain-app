@@ -5,7 +5,7 @@ env:
     AWS_REGION: ap-south-1
     ACCOUNT_ID: 613032729380
     ECR_REPO: brain-tasks-app
-    EKS_CLUSTER_NAME: brain-tasks-cluster
+    EKS_CLUSTER_NAME: brain-tasks-cluster-data
 
 phases:
   pre_build:
