@@ -30,8 +30,6 @@ CloudWatch is used to monitor build logs and application logs
 |  GitHub  | --->  | CodeBuild | --->  |  ECR   | --->  |  EKS    | --->  | LoadBalancer |
 +----------+       +-----------+       +--------+       +---------+       +--------------+
 
-
-
 🔄 Pipeline Flow
     -Developer pushes code to GitHub
     -CodeBuild is triggered automatically:
