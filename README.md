@@ -22,9 +22,10 @@ CloudWatch monitors build logs and app logs
 
 2. Deployment Architecture
 
-   +----------+       +-----------+       +--------+       +---------+       +--------------+
+ +----------+       +-----------+       +--------+       +---------+       +--------------+
 |  GitHub  | --->  | CodeBuild | --->  |  ECR   | --->  |  EKS    | --->  | LoadBalancer |
 +----------+       +-----------+       +--------+       +---------+       +--------------+
+
 
 Pipeline Steps:
 
