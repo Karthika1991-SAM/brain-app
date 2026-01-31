@@ -24,9 +24,13 @@ Application is exposed externally using a Kubernetes LoadBalancer
 CloudWatch is used to monitor build logs and application logs
 
 2. 🏗️ Deployment Architecture
+
+
 +----------+       +-----------+       +--------+       +---------+       +--------------+
 |  GitHub  | --->  | CodeBuild | --->  |  ECR   | --->  |  EKS    | --->  | LoadBalancer |
 +----------+       +-----------+       +--------+       +---------+       +--------------+
+
+
 
 🔄 Pipeline Flow
     -Developer pushes code to GitHub
@@ -74,4 +78,8 @@ CloudWatch is used to monitor build logs and application logs
    -Build & Deploy: CodeBuild
    -On every commit, the application is automatically built and deployed to EKS.
    -Access the Application  using command kubectl get svc brain-tasks-service
+   -loadbalancer url -aa5ab7cc27de14fc8b2a95f67023ed7a-305417844.ap-south-1.elb.amazonaws.com
+
+6. 📊 Monitoring
+    -CodeBuild Logs → Available in AWS CloudWatch
 
