@@ -5,26 +5,39 @@ env:
     AWS_REGION: ap-south-1
     ACCOUNT_ID: 613032729380
     ECR_REPO: brain-tasks-app
+    EKS_CLUSTER_NAME: brain-tasks-cluster
 
 phases:
   pre_build:
     commands:
+      - echo Checking AWS CLI version...
       - aws --version
+
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+
       - IMAGE_URI=$ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:latest
+      - echo Image URI = $IMAGE_URI
 
   build:
     commands:
       - echo Building Docker image...
-      - docker build -t $IMAGE_URI .
+      - docker build -t $ECR_REPO .
+      - docker tag $ECR_REPO:latest $IMAGE_URI
 
   post_build:
     commands:
-      - echo Pushing Docker image...
+      - echo Pushing Docker image to ECR...
       - docker push $IMAGE_URI
-      - printf '[{"name":"brain-tasks","imageUri":"%s"}]' $IMAGE_URI > imagedefinitions.json
 
-artifacts:
-  files:
-    - imagedefinitions.json
+      - echo Updating kubeconfig for EKS...
+      - aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER_NAME
+
+      - echo Deploying to EKS...
+      - kubectl apply -f k8s/deployment.yaml
+      - kubectl apply -f k8s/service.yaml
+
+      - echo Restarting deployment to pull latest image...
+      - kubectl rollout restart deployment brain-tasks-deployment
+
+      - echo Deployment completed successfully!
